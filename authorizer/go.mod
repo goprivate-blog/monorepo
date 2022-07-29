@@ -2,7 +2,7 @@ module example.org/authorizer
 
 go 1.18
 
-replace example.org/log => ../log
+replace example.org/log => github.com/goprivate-blog/log v0.0.0-20220729134106-9929b453df48
 
 require example.org/log v0.0.0-00010101000000-000000000000
 
