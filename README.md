@@ -1,1 +1,1 @@
-# monorepo
+# gomod-mono-repo
