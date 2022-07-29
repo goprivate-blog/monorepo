@@ -1,0 +1,16 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: docker:17.05.0-ce-git
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Build backend Docker image
+          command: |
+            make build_backend
+      - run:
+          name: Build authorizer Docker image
+          command: |
+            make build_authorizer
