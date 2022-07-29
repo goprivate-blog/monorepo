@@ -2,7 +2,7 @@ FROM golang:1.18-buster AS builder
 
 WORKDIR /src
 COPY authorizer/ .
-COPY common /common
+COPY log /log
 
 RUN go mod download
 

@@ -15,11 +15,11 @@ type App struct {
 func NewApp(logger *log.Logger) *App {
 	return &App{
 		logger: logger,
-		server: server.NewServer(),
+		server: server.NewServer(logger, ":80"),
 	}
 }
 
 func (a *App) Start(ctx context.Context) error {
 	a.logger.Info("Starting app")
-	return a.server.Start()
+	return a.server.Start(ctx)
 }

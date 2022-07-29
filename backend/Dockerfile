@@ -2,7 +2,8 @@ FROM golang:1.18-buster AS builder
 
 WORKDIR /src
 COPY backend/ .
-COPY common /common
+COPY log /log
+COPY server /server
 
 RUN go mod download
 
