@@ -2,8 +2,8 @@
 set -euo pipefail
 set -x
 
-log_key_path=${1:-/root/.ssh/log}
-server_key_path=${2:-/root/.ssh/server}
+log_key_path=${1:-/root/.ssh/log.pub}
+server_key_path=${2:-/root/.ssh/server.pub}
 
 mkdir -p ~/.ssh
 # Add github to known hosts
