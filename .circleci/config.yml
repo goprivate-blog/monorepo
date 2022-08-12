@@ -2,20 +2,24 @@ version: 2
 jobs:
   build:
     docker:
-      - image: docker:17.05.0-ce-git
+      - image: cimg/base:2022.08
     steps:
       - checkout
-      - setup_remote_docker
-      - run:
-          name: Install dependencies
-          command: |
-            apk add --no-cache \
-              make
+      - setup_remote_docker:
+          version: 20.10.14
+      - add_ssh_keys:
+          fingerprints:
+            - "c5:cd:b9:00:1e:4c:99:c0:60:45:57:1d:d2:41:8c:d2" # log.github.com
+            - "6f:2d:3c:ae:08:6f:d4:f0:15:5f:b7:4a:89:60:d2:13" # server.github.com
       - run:
           name: Build backend Docker image
           command: |
+            export LOG_SSH_KEY=id_rsa_c5cdb9001e4c99c06045571dd2418cd2 \
+                   SERVER_SSH_KEY=id_rsa_6f2d3cae086fd4f0155fb74a8960d213 \
             make build_backend
       - run:
           name: Build authorizer Docker image
           command: |
+            export LOG_SSH_KEY=id_rsa_c5cdb9001e4c99c06045571dd2418cd2 \
+                   SERVER_SSH_KEY=id_rsa_6f2d3cae086fd4f0155fb74a8960d213 \
             make build_authorizer
